@@ -8,11 +8,11 @@ Specify input columns (`order_id,order_date,status,amount_cents`), output column
 
 > Read the contract and repo conventions. List assumptions that affect outputs or errors. Propose small changes and say how each will be verified. Return the plan before editing.
 
-**Avoid** leaving rounding, duplicate handling, or overwrite behavior for the agent to decide.
+**Avoid** leaving any decision for the agent to decide.
 
 ## 2. Organize the project
 
-The starter archive includes the files shown below. Add the report module and tests as you implement the contract.
+Example:
 
 ```text
 orders-report/
@@ -30,13 +30,15 @@ orders-report/
         └── expected_report.csv
 ```
 
-Keep argument parsing and exit codes in `cli.py`. Put validation and aggregation in `src/orders_report/report.py` so they can be tested without launching the CLI. Add `tests/test_report.py` for business rules and `tests/test_cli.py` for the installed command. Declare dependencies and the entry point in `pyproject.toml`. The README should explain how to install, run, and troubleshoot the tool.
+Have a good plan. For example, keep argument parsing and exit codes in `cli.py`. Put validation and aggregation so they can be tested without launching the CLI. Add `tests/test_report.py` for business rules and `tests/test_cli.py` for the installed command. Declare dependencies and the entry point in `pyproject.toml`. The README should explain how to install, run, and troubleshoot the tool.
 
 **Avoid** hard-coded local paths, import-time file writes, and dependencies that the standard library already covers.
 
 ## 3. Implement in small changes
 
-Start with parsing and aggregation. Then add the CLI and safe output publication. For a local destination with one writer, write a temporary file alongside the output and replace the destination only after writing succeeds. Reject paths that point to the input file.
+Write codes as fast as you can read (my fav quote). 
+
+For example, start with parsing and aggregation. Then add the CLI and safe output publication. For a local destination with one writer, write a temporary file alongside the output and replace the destination only after writing succeeds. Reject paths that point to the input file.
 
 > Implement parsing and aggregation using the standard library. Check the output against the supplied expected CSV. Limit the diff to this behavior and its tests. Flag any change to the contract before implementing it.
 
@@ -63,9 +65,9 @@ Compare the actual CSV rows to `tests/fixtures/expected_report.csv`. Test a late
 
 ## 5. Review and release
 
-Have a teammate review the diff and verification results. If the script becomes a scheduled job, name an owner, reconcile the first run, and document how to rerun it or restore the previous output.
+Always review the diff and verification results. If the script becomes a scheduled job, name an owner, reconcile the first run, and document how to rerun it or restore the previous output.
 
-**Avoid** putting real customer records or credentials into unapproved, or giving the agent production access for development.
+**Avoid** putting credentials, asking claude to push your code, or giving the agent production access for development.
 
 ## good prompts vs. bad prompts
 
