@@ -65,7 +65,7 @@ Compare the actual CSV rows to `tests/fixtures/expected_report.csv`. Test a late
 
 Have a teammate review the diff and verification results. If the script becomes a scheduled job, name an owner, reconcile the first run, and document how to rerun it or restore the previous output.
 
-**Avoid** putting real customer records or credentials into unapproved tools, or giving the agent production access for development.
+**Avoid** putting real customer records or credentials into unapproved, or giving the agent production access for development.
 
 ## good prompts vs. bad prompts
 
@@ -89,8 +89,16 @@ Have a teammate review the diff and verification results. If the script becomes 
 | [Superpowers](https://github.com/obra/superpowers) | Use `brainstorming` and `writing-plans` for ambiguous work. Use `test-driven-development` for regression fixes, `systematic-debugging` when failures are unexplained, and `verification-before-completion` before opening a PR. |
 | [Karpathy Guidelines](https://github.com/multica-ai/andrej-karpathy-skills) | Use as a default for coding tasks. State assumptions, choose a simple design, keep the diff focused, and tie the work to checks you can run. |
 | [Project-specific Claude Code skills](https://code.claude.com/docs/en/skills) | If the team repeatedly runs the same verification workflow, put it in `.claude/skills/verify-report/SKILL.md`. Keep stable repo conventions and common commands in `CLAUDE.md`. |
+| **Matt Pocock’s `grill-with-docs`** | Before coding, resolve ambiguities such as what counts as a paid order and how duplicate IDs should be handled. Record the decisions against the project’s existing docs. [Skill collection](https://github.com/mattpocock/skills) |
+| **OpenSpec `/openspec-propose`** | When changing the CSV schema or CLI contract, draft a proposal, requirements, design, and task list. Have a teammate review how existing callers will be affected before implementing. [OpenSpec](https://github.com/Fission-AI/OpenSpec) |
+| **Seth Hobson’s `python-testing-patterns`** | Design pytest fixtures and assertions for exact totals, malformed rows, and file safety. Use real temporary files for CLI tests and mock only the boundary needed to trigger a specific failure. [Python Development plugin](https://github.com/wshobson/agents#quick-start) |
+| **ECC (Everything Claude Code)** | Use `python-patterns` for Python conventions, `python-testing` for pytest, and `verification-loop` to repeat checks before handing off a change. [ECC](https://github.com/affaan-m/ECC) |
+| **GitHub Spec Kit** | Use `/speckit-specify` and the plan and task steps for a larger feature, such as adding scheduled report delivery. Review the written requirements and plan before implementation. [Claude Code integration](https://github.github.io/spec-kit/integrations/claude.html) |
+| **gstack** | Use `/plan-eng-review` to check data flow, failure behavior, and the test plan before coding. Use `/review` for the patch and `/qa` if the project adds a browser interface. [gstack](https://github.com/garrytan/gstack) |
+| **Get Shit Done (GSD)** | Use its phase-based planning, implementation, review, and acceptance checks when a project spans multiple sessions or milestones. For example, verify the local CLI before starting work on scheduling. [GSD command reference](https://github.com/gsd-build/get-shit-done/blob/main/docs/COMMANDS.md) |
+| **BMad Method** | Explore and document the product idea while the scope is still open. Once a change is agreed, `bmad-build` implements and reviews it. [BMad Method](https://docs.bmad-method.org/) |
 
-Review third-party skill instructions before enabling them. Keep merge and release approvals in the team's usual workflow.
+
 
 ### More skills for everyday engineering
 
